@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khabar - Family Update System</title>
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="logo"><span class="logo-dot"></span>Khabar</div>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#compare">Compare</a>
+      <a href="#demo" class="nav-cta">Try demo</a>
+      <button class="icon-btn" id="soundBtn" aria-label="Turn sound off" title="Sound on/off">🔔</button>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch dark mode" title="Dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+    <div class="hero-text" data-aos="fade-right" data-aos-duration="900">
+      <h1>Waiting families should not have to <span class="grad">wonder.</span></h1>
+      <p>One tap by staff. One short WhatsApp or SMS to the family, every time the patient moves to a new stage.</p>
+      <div class="cta-row">
+        <a href="#demo" class="btn">See the demo</a>
+        <a href="#how" class="btn ghost">How it works</a>
+      </div>
+    </div>
+    <div class="hero-phone" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+      <div class="phone float">
+        <div class="phonebar">Hospital updates</div>
+        <div class="chat" id="heroChat"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAGES STRIP -->
+  <section class="band">
+    <h2 data-aos="fade-up">Four simple stages</h2>
+    <div class="stage-row">
+      <span class="chip" data-aos="zoom-in" data-aos-delay="0">Registered</span>
+      <span class="chip" data-aos="zoom-in" data-aos-delay="150">In Surgery</span>
+      <span class="chip" data-aos="zoom-in" data-aos-delay="300">Recovery</span>
+      <span class="chip" data-aos="zoom-in" data-aos-delay="450">Shifted to Ward</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section">
+    <h2 data-aos="fade-up">How it works</h2>
+    <p class="lead" data-aos="fade-up" data-aos-delay="100">Three steps. The family installs nothing.</p>
+    <div class="grid3">
+      <div class="card s1" data-aos="flip-left" data-aos-delay="0">
+        <div class="icon">1</div><h3>Admission</h3>
+        <p>Reception saves one family number, with consent, and gives the patient a token.</p>
+      </div>
+      <div class="card s2" data-aos="flip-left" data-aos-delay="200">
+        <div class="icon">2</div><h3>Staff tap</h3>
+        <p>Staff tap the new stage on the update panel, check the preview, and confirm.</p>
+      </div>
+      <div class="card s3" data-aos="flip-left" data-aos-delay="400">
+        <div class="icon">3</div><h3>WhatsApp / SMS</h3>
+        <p>A message with token, stage and time reaches the family phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section alt">
+    <h2 data-aos="fade-up">Why families and staff like it</h2>
+    <div class="grid2">
+      <div class="feat" data-aos="fade-up" data-aos-delay="0"><h3>One-tap updates</h3><p>Four buttons. Nothing to type.</p></div>
+      <div class="feat" data-aos="fade-up" data-aos-delay="100"><h3>Works on any phone</h3><p>WhatsApp first, SMS as backup.</p></div>
+      <div class="feat" data-aos="fade-up" data-aos-delay="200"><h3>Private by design</h3><p>Token number only. Never the patient's name.</p></div>
+      <div class="feat" data-aos="fade-up" data-aos-delay="300"><h3>Calmer Help Desk</h3><p>Families get answers without crowding the desk.</p></div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="section">
+    <h2 data-aos="fade-up">Try the prototype</h2>
+    <p class="lead" data-aos="fade-up">Go through the three steps in order.</p>
+
+    <div class="tabs" data-aos="fade-up">
+      <button class="tab active" data-tab="p1">1. Admission</button>
+      <button class="tab" data-tab="p2">2. Staff update panel</button>
+      <button class="tab" data-tab="p3">3. Family phone</button>
+      <button class="tab" data-tab="p4">4. Waiting-room screen</button>
+    </div>
+
+    <section id="p1" class="panel" data-aos="zoom-in-up">
+      <div class="cols">
+        <div>
+          <h3>Admit a patient</h3>
+          <label for="phone">One family contact number</label>
+          <input id="phone" type="tel" placeholder="0300 1234567">
+          <label for="channel">Does this number have WhatsApp?</label>
+          <select id="channel">
+            <option value="WhatsApp">Yes, use WhatsApp</option>
+            <option value="SMS">No, use SMS</option>
+          </select>
+          <label class="check"><input type="checkbox" id="consent"> The family member agreed to receive updates.</label>
+          <p class="error" id="error"></p>
+          <button class="btn" id="admitBtn">Save and give token</button>
+          <div class="tokenbox" id="tokenbox" hidden>
+            <p>Give this token to the family</p>
+            <div class="tokennum" id="tokennum"></div>
+          </div>
+        </div>
+        <div>
+          <h3>Patients admitted</h3>
+          <table>
+            <thead><tr><th>Token</th><th>Contact</th><th>Stage</th></tr></thead>
+            <tbody id="board"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="p2" class="panel" hidden>
+      <h3>Update panel</h3>
+      <div class="cols">
+        <div>
+          <label for="pick">Patient token</label>
+          <select id="pick"></select>
+          <label>Tap the new stage</label>
+          <div class="stages" id="stages"></div>
+        </div>
+        <div>
+          <label>Message preview</label>
+          <pre class="preview" id="preview">Select a token and a stage.</pre>
+          <p class="note" id="route"></p>
+          <button class="btn dark" id="sendBtn" disabled>Confirm and send</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p3" class="panel" hidden>
+      <h3>What the family sees</h3>
+      <div class="phone">
+        <div class="phonebar" id="phonebar">No messages yet</div>
+        <div class="chat" id="chat"></div>
+      </div>
+    </section>
+
+    <section id="p4" class="panel" hidden>
+      <h3>Digital display screen (waiting area)</h3>
+      <p class="note">Shows each patient's stage by token number only. It updates when staff send an update.</p>
+      <div class="display">
+        <div class="dhead"><span>Patient status</span><span id="dclock"></span></div>
+        <div class="dcols"><span>Token</span><span>Progress</span><span>Stage</span></div>
+        <div id="dboard"></div>
+      </div>
+    </section>
+    <button class="reset btn" id="resetBtn">Clear all data</button>
+  </section>
+
+  <!-- COMPARISON -->
+  <section id="compare" class="section alt">
+    <h2 data-aos="fade-up">Why not the other ideas?</h2>
+    <div class="scroll" data-aos="fade-up" data-aos-delay="100">
+      <table class="cmp">
+        <thead><tr><th>Idea</th><th>Strength</th><th>Weakness</th></tr></thead>
+        <tbody>
+          <tr><td>QR code tracking</td><td>Low cost, modern</td><td>Needs smartphone and internet; hard for elderly</td></tr>
+          <tr><td>Telephone helpline</td><td>No smartphone needed</td><td>Busy line; takes staff time; hard to verify caller</td></tr>
+          <tr><td>Receptionist point</td><td>Small, private list</td><td>One person overloaded; others miss updates</td></tr>
+          <tr class="us"><td>Khabar</td><td>Reaches any phone instantly</td><td>Needs consent and a working number</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Khabar student project. Team members: Maheen Ghaffar (Roll No. 007) & Kinza Liaquat(Roll No. 011)</footer>
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
